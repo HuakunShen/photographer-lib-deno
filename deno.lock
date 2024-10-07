@@ -1,0 +1,78 @@
+{
+  "version": "3",
+  "packages": {
+    "specifiers": {
+      "npm:exiftool-vendored": "npm:exiftool-vendored@28.5.0",
+      "npm:fluent-ffmpeg": "npm:fluent-ffmpeg@2.1.3"
+    },
+    "npm": {
+      "@photostructure/tz-lookup@11.0.0": {
+        "integrity": "sha512-QMV5/dWtY/MdVPXZs/EApqzyhnqDq1keYEqpS+Xj2uidyaqw2Nk/fWcsszdruIXjdqp1VoWNzsgrO6bUHU1mFw==",
+        "dependencies": {}
+      },
+      "@types/luxon@3.4.2": {
+        "integrity": "sha512-TifLZlFudklWlMBfhubvgqTXRzLDI5pCbGa4P8a3wPyUQSW+1xQ5eDsreP9DWHX3tjq1ke96uYG/nwundroWcA==",
+        "dependencies": {}
+      },
+      "async@0.2.10": {
+        "integrity": "sha512-eAkdoKxU6/LkKDBzLpT+t6Ff5EtfSF4wx1WfJiPEEV7WNLnDaRXk0oVysiEPm262roaachGexwUv94WhSgN5TQ==",
+        "dependencies": {}
+      },
+      "batch-cluster@13.0.0": {
+        "integrity": "sha512-EreW0Vi8TwovhYUHBXXRA5tthuU2ynGsZFlboyMJHCCUXYa2AjgwnE3ubBOJs2xJLcuXFJbi6c/8pH5+FVj8Og==",
+        "dependencies": {}
+      },
+      "exiftool-vendored.exe@12.96.0": {
+        "integrity": "sha512-pKPN9F/Evw2yyO5/+ml3spbXIqejzOxyF7jEnj8tLU2JPSmIlziPUZ75XIhcPbilX86jVKmuiso7FUDicOg8pQ==",
+        "dependencies": {}
+      },
+      "exiftool-vendored.pl@12.96.0": {
+        "integrity": "sha512-v4nGnovAMBsTfOWhwAcOiRiq/8kuJOo3GUMHNpug7Mr4jLz3tmWEo7DdNyOYmpcvWbA6smOTG0SmwsrY8fsW+A==",
+        "dependencies": {}
+      },
+      "exiftool-vendored@28.5.0": {
+        "integrity": "sha512-/XbVpZGP5P/tifRbO2BIBuDxLkHrUoxhJGOKAeASHnIBNNgBzp3UWtp0wLPhEd24ETe/ohuEUPmpUaKcNSDYsg==",
+        "dependencies": {
+          "@photostructure/tz-lookup": "@photostructure/tz-lookup@11.0.0",
+          "@types/luxon": "@types/luxon@3.4.2",
+          "batch-cluster": "batch-cluster@13.0.0",
+          "exiftool-vendored.exe": "exiftool-vendored.exe@12.96.0",
+          "exiftool-vendored.pl": "exiftool-vendored.pl@12.96.0",
+          "he": "he@1.2.0",
+          "luxon": "luxon@3.5.0"
+        }
+      },
+      "fluent-ffmpeg@2.1.3": {
+        "integrity": "sha512-Be3narBNt2s6bsaqP6Jzq91heDgOEaDCJAXcE3qcma/EJBSy5FB4cvO31XBInuAuKBx8Kptf8dkhjK0IOru39Q==",
+        "dependencies": {
+          "async": "async@0.2.10",
+          "which": "which@1.3.1"
+        }
+      },
+      "he@1.2.0": {
+        "integrity": "sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==",
+        "dependencies": {}
+      },
+      "isexe@2.0.0": {
+        "integrity": "sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==",
+        "dependencies": {}
+      },
+      "luxon@3.5.0": {
+        "integrity": "sha512-rh+Zjr6DNfUYR3bPwJEnuwDdqMbxZW7LOQfUN4B54+Cl+0o5zaU9RJ6bcidfDtC1cWCZXQ+nvX8bf6bAji37QQ==",
+        "dependencies": {}
+      },
+      "which@1.3.1": {
+        "integrity": "sha512-HxJdYWq1MTIQbJ3nw0cqssHoTNU267KlrDuGZ1WYlxDStUtKUhOaJmh112/TZmHxxUfuJqPXSOm7tDyas0OSIQ==",
+        "dependencies": {
+          "isexe": "isexe@2.0.0"
+        }
+      }
+    }
+  },
+  "remote": {},
+  "workspace": {
+    "dependencies": [
+      "jsr:@std/assert@1"
+    ]
+  }
+}

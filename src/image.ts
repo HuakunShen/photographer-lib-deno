@@ -29,6 +29,11 @@ export function parseImageGPS(tags: exiftool.Tags): ImageGPSMetadata {
   };
 }
 
+/**
+ * Given exiftool tags, return useful image metadata as a flat object
+ * @param tags 
+ * @returns 
+ */
 export function parseImageMetadata(tags: exiftool.Tags): ImageMetadata {
   return {
     ...parseImageGPS(tags),
@@ -50,6 +55,16 @@ export function parseImageMetadata(tags: exiftool.Tags): ImageMetadata {
   };
 }
 
+/**
+ * @example
+ * ```ts
+ * import { image } from "./mod.ts";
+ * const imagePath = "/Users/user/Pictures/DJI_20241006140443_0154_D.DNG";
+ * image.readImageMetadata(imagePath).then(console.log);
+ * ```
+ * @param imagePath
+ * @returns
+ */
 export function readImageMetadata(imagePath: string): Promise<ImageMetadata> {
   return readImageTags(imagePath).then(parseImageMetadata);
 }

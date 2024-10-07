@@ -3,6 +3,11 @@ import ffmpeg from "npm:fluent-ffmpeg@2.1.3";
 import type { DefaultVideoMetadata, VideoMetadata } from "./types/video.ts";
 import { parseFrameRate, stringToNumber } from "./utils.ts";
 
+/**
+ * Turn `ffmpeg.ffprobe` into a promise
+ * @param videoPath 
+ * @returns 
+ */
 export function ffprobe(videoPath: string): Promise<ffmpeg.FfprobeData> {
   return new Promise((resolve, reject) => {
     ffmpeg.ffprobe(videoPath, (err, metadata) => {
@@ -15,9 +20,13 @@ export function ffprobe(videoPath: string): Promise<ffmpeg.FfprobeData> {
   });
 }
 
+/**
+ * Run ffprobe on video file and return useful metadata
+ * @param videoPath 
+ * @returns 
+ */
 export function readVideoMetadata(videoPath: string): Promise<VideoMetadata> {
   return ffprobe(videoPath).then((metadata) => {
-    console.log(metadata);
     return {
       streams: metadata.streams.map((stream) => ({
         width: stream.width,
@@ -55,6 +64,18 @@ export function readVideoMetadata(videoPath: string): Promise<VideoMetadata> {
   });
 }
 
+/**
+ * Try to find the main stream from video file and return useful metadata as a flat object
+ * @example
+ * ```ts
+ * import { video } from "./mod.ts";
+ * const videoPath =
+ * "/Volumes/EditDrive/2024-QC/DJI-mini-4/DJI_20241004162411_0110_D.MP4";
+ * video.readMainVideoMetadata(videoPath).then(console.log);
+ * ```
+ * @param videoPath
+ * @returns
+ */
 export function readMainVideoMetadata(
   videoPath: string
 ): Promise<DefaultVideoMetadata | null> {

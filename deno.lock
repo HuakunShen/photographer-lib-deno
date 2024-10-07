@@ -2,16 +2,38 @@
   "version": "3",
   "packages": {
     "specifiers": {
+      "npm:@types/fluent-ffmpeg": "npm:@types/fluent-ffmpeg@2.1.26",
+      "npm:@types/fluent-ffmpeg@2.1.3": "npm:@types/fluent-ffmpeg@2.1.3",
+      "npm:@types/node": "npm:@types/node@18.16.19",
       "npm:exiftool-vendored": "npm:exiftool-vendored@28.5.0",
-      "npm:fluent-ffmpeg": "npm:fluent-ffmpeg@2.1.3"
+      "npm:exiftool-vendored@28.5.0": "npm:exiftool-vendored@28.5.0",
+      "npm:exiftool-vendored@28.6.0": "npm:exiftool-vendored@28.6.0",
+      "npm:fluent-ffmpeg": "npm:fluent-ffmpeg@2.1.3",
+      "npm:fluent-ffmpeg@2.1.3": "npm:fluent-ffmpeg@2.1.3"
     },
     "npm": {
       "@photostructure/tz-lookup@11.0.0": {
         "integrity": "sha512-QMV5/dWtY/MdVPXZs/EApqzyhnqDq1keYEqpS+Xj2uidyaqw2Nk/fWcsszdruIXjdqp1VoWNzsgrO6bUHU1mFw==",
         "dependencies": {}
       },
+      "@types/fluent-ffmpeg@2.1.26": {
+        "integrity": "sha512-0JVF3wdQG+pN0ImwWD0bNgJiKF2OHg/7CDBHw5UIbRTvlnkgGHK6V5doE54ltvhud4o31/dEiHm23CAlxFiUQg==",
+        "dependencies": {
+          "@types/node": "@types/node@18.16.19"
+        }
+      },
+      "@types/fluent-ffmpeg@2.1.3": {
+        "integrity": "sha512-KAOj3UTNj73SEhrjU/A/Kp+H802NiXfMI7qFT94FhgepqOdS/bHZTyiik0caLiqjMMs9YJ1M4pCcmt0DrzuwaA==",
+        "dependencies": {
+          "@types/node": "@types/node@18.16.19"
+        }
+      },
       "@types/luxon@3.4.2": {
         "integrity": "sha512-TifLZlFudklWlMBfhubvgqTXRzLDI5pCbGa4P8a3wPyUQSW+1xQ5eDsreP9DWHX3tjq1ke96uYG/nwundroWcA==",
+        "dependencies": {}
+      },
+      "@types/node@18.16.19": {
+        "integrity": "sha512-IXl7o+R9iti9eBW4Wg2hx1xQDig183jj7YLn8F7udNceyfkbn1ZxmzZXuak20gR40D7pIkIY1kYGx5VIGbaHKA==",
         "dependencies": {}
       },
       "async@0.2.10": {
@@ -26,8 +48,16 @@
         "integrity": "sha512-pKPN9F/Evw2yyO5/+ml3spbXIqejzOxyF7jEnj8tLU2JPSmIlziPUZ75XIhcPbilX86jVKmuiso7FUDicOg8pQ==",
         "dependencies": {}
       },
+      "exiftool-vendored.exe@12.97.0": {
+        "integrity": "sha512-+HxyFigEJOtwRjP7PhEslhZKuVW2V0hvmHPHtbVtNKGfAUGcfc95xNTjASQfKJvc+9ZuvzdEBPkEQmyA/ZYdIw==",
+        "dependencies": {}
+      },
       "exiftool-vendored.pl@12.96.0": {
         "integrity": "sha512-v4nGnovAMBsTfOWhwAcOiRiq/8kuJOo3GUMHNpug7Mr4jLz3tmWEo7DdNyOYmpcvWbA6smOTG0SmwsrY8fsW+A==",
+        "dependencies": {}
+      },
+      "exiftool-vendored.pl@12.97.0": {
+        "integrity": "sha512-mXe9JEH3csfyPWcC7+H6IpfaokDMMr4S45n7MtiobGPdeeh+kFnf1SQ9cxg4sF403P6IKVeYYPbzgKMlpro9eQ==",
         "dependencies": {}
       },
       "exiftool-vendored@28.5.0": {
@@ -38,6 +68,18 @@
           "batch-cluster": "batch-cluster@13.0.0",
           "exiftool-vendored.exe": "exiftool-vendored.exe@12.96.0",
           "exiftool-vendored.pl": "exiftool-vendored.pl@12.96.0",
+          "he": "he@1.2.0",
+          "luxon": "luxon@3.5.0"
+        }
+      },
+      "exiftool-vendored@28.6.0": {
+        "integrity": "sha512-Cx8/8ov1tKEacHhsi7FNYdisIhKq/SeQfprYSpYzwBuJwkPmCV8w7tTIvUJRQX9rvopXhBA4eBf1FPXqTZW5vA==",
+        "dependencies": {
+          "@photostructure/tz-lookup": "@photostructure/tz-lookup@11.0.0",
+          "@types/luxon": "@types/luxon@3.4.2",
+          "batch-cluster": "batch-cluster@13.0.0",
+          "exiftool-vendored.exe": "exiftool-vendored.exe@12.97.0",
+          "exiftool-vendored.pl": "exiftool-vendored.pl@12.97.0",
           "he": "he@1.2.0",
           "luxon": "luxon@3.5.0"
         }

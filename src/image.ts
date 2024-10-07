@@ -1,4 +1,5 @@
-import exiftool from "npm:exiftool-vendored";
+import exiftool from "npm:exiftool-vendored@28.5.0";
+import type { ImageGPSMetadata, ImageMetadata } from "./types/image.ts";
 
 /**
  * Read image metadata (tags or exif) using exiftool
@@ -16,7 +17,7 @@ export async function readImageTags(imagePath: string): Promise<exiftool.Tags> {
  * @param tags
  * @returns
  */
-export function parseImageGPS(tags: exiftool.Tags) {
+export function parseImageGPS(tags: exiftool.Tags): ImageGPSMetadata {
   return {
     latitude: tags.GPSLatitude,
     latitudeRef: tags.GPSLatitudeRef,
@@ -28,9 +29,8 @@ export function parseImageGPS(tags: exiftool.Tags) {
   };
 }
 
-export function parseImageMetadata(tags: exiftool.Tags) {
+export function parseImageMetadata(tags: exiftool.Tags): ImageMetadata {
   return {
-    // gps: parseImageGPS(tags),
     ...parseImageGPS(tags),
     width: tags.ImageWidth,
     height: tags.ImageHeight,
@@ -50,6 +50,6 @@ export function parseImageMetadata(tags: exiftool.Tags) {
   };
 }
 
-export function readImageMetadata(imagePath: string) {
+export function readImageMetadata(imagePath: string): Promise<ImageMetadata> {
   return readImageTags(imagePath).then(parseImageMetadata);
 }

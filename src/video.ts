@@ -1,6 +1,6 @@
-// @ts-types="npm:@types/fluent-ffmpeg"
-import ffmpeg from "npm:fluent-ffmpeg";
-import type { DefaultVideoMetadata, VideoMetadata } from "./types.ts";
+// @ts-types="npm:@types/fluent-ffmpeg@2.1.26"
+import ffmpeg from "npm:fluent-ffmpeg@2.1.3";
+import type { DefaultVideoMetadata, VideoMetadata } from "./types/video.ts";
 import { parseFrameRate, stringToNumber } from "./utils.ts";
 
 export function ffprobe(videoPath: string): Promise<ffmpeg.FfprobeData> {
@@ -17,6 +17,7 @@ export function ffprobe(videoPath: string): Promise<ffmpeg.FfprobeData> {
 
 export function readVideoMetadata(videoPath: string): Promise<VideoMetadata> {
   return ffprobe(videoPath).then((metadata) => {
+    console.log(metadata);
     return {
       streams: metadata.streams.map((stream) => ({
         width: stream.width,
@@ -73,7 +74,7 @@ export function readMainVideoMetadata(
       ...metadata,
       ...mainVideoStream,
     };
-    const { streams, tags, ...restMetadata } = result;
+    const { streams: _streams, tags: _tags, ...restMetadata } = result;
     return restMetadata;
   });
 }

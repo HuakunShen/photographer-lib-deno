@@ -3,7 +3,7 @@
   "version": "0.1.2",
   "exports": {
     ".": "./mod.ts",
-    "./types": "./src/types.ts"
+    "./types": "./src/types/index.ts"
   },
   "tasks": {
     "dev": "deno run --watch main.ts"

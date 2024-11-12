@@ -99,3 +99,19 @@ export function readMainVideoMetadata(
     return restMetadata;
   });
 }
+
+export function getAvailableEncoders(): Promise<ffmpeg.Encoders> {
+  return new Promise((resolve, reject) => {
+    return ffmpeg.getAvailableEncoders((err, encoders) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(encoders);
+      }
+    });
+  });
+}
+
+export function getAvailableEncodersNames(): Promise<string[]> {
+  return getAvailableEncoders().then((encoders) => Object.keys(encoders));
+}

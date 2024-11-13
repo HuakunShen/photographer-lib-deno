@@ -1,4 +1,4 @@
-import { exiftool, type Tags } from "exiftool-vendored";
+import { exiftool, type Tags, ExifTool } from "exiftool-vendored";
 import type { ImageGPSMetadata, ImageMetadata } from "../types/image.ts";
 
 /**
@@ -7,9 +7,24 @@ import type { ImageGPSMetadata, ImageMetadata } from "../types/image.ts";
  * @returns
  */
 export async function readImageTags(imagePath: string): Promise<Tags> {
-  const tags = await exiftool.read(imagePath);
-  await exiftool.end();
+  const loader = new ExifTool();
+  const tags = await loader.read(imagePath);
+  await loader.end();
   return tags;
+}
+
+export async function batchReadImageTags(
+  imagePaths: string[]
+): Promise<Tags[]> {
+  const loader = new ExifTool();
+
+  function readTags(imagePath: string): Promise<Tags | null> {
+    return loader.read(imagePath).catch(() => null);
+  }
+
+  const tags = await Promise.all(imagePaths.map(readTags));
+  await loader.end();
+  return tags.filter((tag) => tag !== null);
 }
 
 /**
@@ -67,4 +82,12 @@ export function parseImageMetadata(tags: Tags): ImageMetadata {
  */
 export function readImageMetadata(imagePath: string): Promise<ImageMetadata> {
   return readImageTags(imagePath).then(parseImageMetadata);
+}
+
+export function batchReadImageMetadata(
+  imagePaths: string[]
+): Promise<ImageMetadata[]> {
+  return batchReadImageTags(imagePaths).then((tags) =>
+    tags.map(parseImageMetadata)
+  );
 }

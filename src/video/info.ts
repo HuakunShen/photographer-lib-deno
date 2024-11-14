@@ -25,7 +25,13 @@ export function ffprobe(videoPath: string): Promise<ffmpeg.FfprobeData> {
  * @param videoPath
  * @returns
  */
-export function readVideoMetadata(videoPath: string): Promise<VideoMetadata> {
+export function readVideoMetadata(
+  videoPath: string,
+  options?: { ffprobePath?: string }
+): Promise<VideoMetadata> {
+  if (options && options.ffprobePath) {
+    ffmpeg.setFfprobePath(options.ffprobePath);
+  }
   return ffprobe(videoPath).then((metadata) => {
     return {
       streams: metadata.streams.map((stream) => ({

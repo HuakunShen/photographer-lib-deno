@@ -1,41 +1,6 @@
 // @ts-types="npm:@types/fluent-ffmpeg@2.1.27"
 import ffmpeg from "fluent-ffmpeg";
-import type { Progress } from "../types/video.ts";
-
-export type ProcessVideoOptions = {
-  resizePercentage?: number;
-  size?: string;
-  aspectRatio?: string;
-  videoCodec?: string;
-  audioCodec?: string;
-  format?: string;
-  outputOptions?: string[];
-  audioFilters?: string[];
-  noAudio?: boolean;
-  takeFrames?: number;
-  noVideo?: boolean;
-  autopad?: {
-    pad?: boolean;
-    color?: string;
-  };
-  audioQuality?: number;
-  fps?: number;
-  preset?:
-    | "ultrafast"
-    | "superfast"
-    | "veryfast"
-    | "faster"
-    | "fast"
-    | "medium"
-    | "slow"
-    | "slower"
-    | "veryslow";
-  startTime?: string | number;
-  duration?: string | number;
-  audioBitrate?: number;
-  videoBitrate?: number;
-  audioChannels?: number;
-};
+import type { ProcessVideoOptions, Progress } from "../types/video.ts";
 
 export function convertVideo(
   inputPath: string,
@@ -45,6 +10,12 @@ export function convertVideo(
   progressCallback?: (progress: Progress) => void,
   endCallback?: () => void
 ): void {
+  if (options.ffprobePath) {
+    ffmpeg.setFfprobePath(options.ffprobePath);
+  }
+  if (options.ffmpegPath) {
+    ffmpeg.setFfmpegPath(options.ffmpegPath);
+  }
   let cmd = ffmpeg(inputPath);
   if (options.size) {
     cmd = cmd.size(options.size);

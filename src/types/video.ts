@@ -58,39 +58,45 @@ export const Progress = v.object({
 });
 export type Progress = v.InferOutput<typeof Progress>;
 
-export type ProcessVideoOptions = {
-  resizePercentage?: number;
-  size?: string;
-  aspectRatio?: string;
-  videoCodec?: string;
-  audioCodec?: string;
-  format?: string;
-  outputOptions?: string[];
-  audioFilters?: string[];
-  noAudio?: boolean;
-  takeFrames?: number;
-  noVideo?: boolean;
-  autopad?: {
-    pad?: boolean;
-    color?: string;
-  };
-  audioQuality?: number;
-  fps?: number;
-  preset?:
-    | "ultrafast"
-    | "superfast"
-    | "veryfast"
-    | "faster"
-    | "fast"
-    | "medium"
-    | "slow"
-    | "slower"
-    | "veryslow";
-  startTime?: string | number;
-  duration?: string | number;
-  audioBitrate?: number;
-  videoBitrate?: number;
-  audioChannels?: number;
-  ffprobePath?: string;
-  ffmpegPath?: string;
-};
+export const ProcessVideoOptions = v.object({
+  resizePercentage: v.optional(v.number()),
+  size: v.optional(v.string()),
+  aspectRatio: v.optional(v.string()),
+  videoCodec: v.optional(v.string()),
+  audioCodec: v.optional(v.string()),
+  format: v.optional(v.string()),
+  outputOptions: v.optional(v.array(v.string())),
+  audioFilters: v.optional(v.array(v.string())),
+  noAudio: v.optional(v.boolean()),
+  takeFrames: v.optional(v.number()),
+  noVideo: v.optional(v.boolean()),
+  autopad: v.optional(
+    v.object({
+      pad: v.optional(v.boolean()),
+      color: v.optional(v.string()),
+    })
+  ),
+  audioQuality: v.optional(v.number()),
+  fps: v.optional(v.number()),
+  preset: v.optional(
+    v.union([
+      v.literal("ultrafast"),
+      v.literal("superfast"),
+      v.literal("veryfast"),
+      v.literal("faster"),
+      v.literal("fast"),
+      v.literal("medium"),
+      v.literal("slow"),
+      v.literal("slower"),
+      v.literal("veryslow"),
+    ])
+  ),
+  startTime: v.optional(v.union([v.string(), v.number()])),
+  duration: v.optional(v.union([v.string(), v.number()])),
+  audioBitrate: v.optional(v.number()),
+  videoBitrate: v.optional(v.number()),
+  audioChannels: v.optional(v.number()),
+  ffprobePath: v.optional(v.string()),
+  ffmpegPath: v.optional(v.string()),
+});
+export type ProcessVideoOptions = v.InferOutput<typeof ProcessVideoOptions>;

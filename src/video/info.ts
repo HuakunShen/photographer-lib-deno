@@ -138,8 +138,26 @@ export function getAvailableCodecs(source?: string): Promise<ffmpeg.Codecs> {
   });
 }
 
-export function getAvailableCodecsNames(source?: string): Promise<string[]> {
-  return getAvailableCodecs(source).then((codecs) => Object.keys(codecs));
+export function getAvailableCodecsByType(
+  type: "video" | "audio" | "subtitle" | string,
+  source?: string
+): Promise<ffmpeg.Codecs> {
+  return getAvailableCodecs(source)
+    .then((codecs) =>
+      Object.entries(codecs).filter(([_, codec]) => codec.type === type)
+    )
+    .then((codecsArr) => Object.fromEntries(codecsArr));
+}
+
+export function getAvailableCodecsNamesByType(
+  type: "video" | "audio" | "subtitle" | string,
+  source?: string
+): Promise<string[]> {
+  return getAvailableCodecs(source).then((codecs) =>
+    Object.entries(codecs)
+      .filter(([_, codec]) => codec.type === type)
+      .map(([name]) => name)
+  );
 }
 
 export function getAvailableFormats(source?: string): Promise<ffmpeg.Formats> {

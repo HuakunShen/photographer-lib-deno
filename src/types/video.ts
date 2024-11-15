@@ -1,4 +1,11 @@
+// @ts-types="npm:@types/fluent-ffmpeg@2.1.27"
+import type ffmpeg from "fluent-ffmpeg";
 import * as v from "valibot";
+
+export type Codec = ffmpeg.Codec;
+export type Filters = ffmpeg.Filters;
+export type Formats = ffmpeg.Formats;
+export type Encoders = ffmpeg.Encoders;
 
 export const Stream = v.object({
   width: v.optional(v.number()),

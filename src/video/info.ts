@@ -106,9 +106,12 @@ export function readMainVideoMetadata(
   });
 }
 
-export function getAvailableEncoders(): Promise<ffmpeg.Encoders> {
+export function getAvailableEncoders(
+  source?: string
+): Promise<ffmpeg.Encoders> {
+  const cmd = source ? ffmpeg(source) : ffmpeg();
   return new Promise((resolve, reject) => {
-    return ffmpeg.getAvailableEncoders((err, encoders) => {
+    return cmd.getAvailableEncoders((err, encoders) => {
       if (err) {
         reject(err);
       } else {
@@ -118,6 +121,57 @@ export function getAvailableEncoders(): Promise<ffmpeg.Encoders> {
   });
 }
 
-export function getAvailableEncodersNames(): Promise<string[]> {
-  return getAvailableEncoders().then((encoders) => Object.keys(encoders));
+export function getAvailableEncodersNames(source?: string): Promise<string[]> {
+  return getAvailableEncoders(source).then((encoders) => Object.keys(encoders));
+}
+
+export function getAvailableCodecs(source?: string): Promise<ffmpeg.Codecs> {
+  const cmd = source ? ffmpeg(source) : ffmpeg();
+  return new Promise((resolve, reject) => {
+    return cmd.getAvailableCodecs((err, codecs) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(codecs);
+      }
+    });
+  });
+}
+
+export function getAvailableCodecsNames(source?: string): Promise<string[]> {
+  return getAvailableCodecs(source).then((codecs) => Object.keys(codecs));
+}
+
+export function getAvailableFormats(source?: string): Promise<ffmpeg.Formats> {
+  const cmd = source ? ffmpeg(source) : ffmpeg();
+  return new Promise((resolve, reject) => {
+    return cmd.getAvailableFormats((err, formats) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(formats);
+      }
+    });
+  });
+}
+
+export function getAvailableFormatsNames(source?: string): Promise<string[]> {
+  return getAvailableFormats(source).then((formats) => Object.keys(formats));
+}
+
+export function getAvailableFilters(source?: string): Promise<ffmpeg.Filters> {
+  const cmd = source ? ffmpeg(source) : ffmpeg();
+  return new Promise((resolve, reject) => {
+    return cmd.getAvailableFilters((err, filters) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(filters);
+      }
+    });
+  });
+}
+
+export function getAvailableFiltersNames(source?: string): Promise<string[]> {
+  return getAvailableFilters(source).then((filters) => Object.keys(filters));
 }

@@ -7,5 +7,6 @@ This library is designed for https://kunkun.sh/ who needs to deal with photos an
 ## Features
 
 - Read metadata
+- Overwrite/Fix Image Creation Date
 - Compression
 - Format Conversion

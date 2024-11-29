@@ -27,7 +27,7 @@ export const ImageMetadata = v.object({
   dateCreated: v.optional(v.union([v.string(), v.instance(ExifDateTime)])),
   dateModified: v.optional(v.union([v.string(), v.instance(ExifDateTime)])),
   FileFormat: v.optional(v.string()),
-  Quality: v.optional(v.number()),
+  Quality: v.optional(v.string()),
   RAWFileType: v.optional(v.string()),
   Compression: v.optional(v.string()),
   CameraOrientation: v.optional(v.string()),

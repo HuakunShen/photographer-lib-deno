@@ -67,6 +67,11 @@ export function parseImageMetadata(tags: Tags): ImageMetadata {
     focalLength: tags.FocalLength,
     focalLength35efl: tags.FocalLength35efl,
     focalLengthIn35mmFormat: tags.FocalLengthIn35mmFormat,
+    FileFormat: tags.FileFormat,
+    Quality: tags.Quality,
+    RAWFileType: tags.RAWFileType,
+    CameraOrientation: tags.CameraOrientation,
+    FacesDetected: tags.FacesDetected,
     fNumber: tags.Fnumber, // e.g. f/2.8,
     exposureTime: tags.ExposureTime,
     exposureMode: tags.ExposureMode,
@@ -91,7 +96,8 @@ export function readImageMetadata(imagePath: string): Promise<ImageMetadata> {
 export function batchReadImageMetadata(
   imagePaths: string[]
 ): Promise<ImageMetadata[]> {
-  return batchReadImageTags(imagePaths).then((tags) =>
-    tags.map(parseImageMetadata)
-  );
+  return batchReadImageTags(imagePaths).then((tags) => {
+    // console.log("tags", tags);
+    return tags.map(parseImageMetadata);
+  });
 }

@@ -102,6 +102,8 @@ export function batchSmartSetImageOriginalDate(
             imagePaths[i],
             {
               DateTimeOriginal: newDate,
+              ModifyDate: newDate,
+              CreateDate: newDate,
             },
             {
               writeArgs: ["-overwrite_original"],

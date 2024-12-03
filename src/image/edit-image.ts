@@ -3,9 +3,15 @@ import { ExifTool, ExifDateTime } from "exiftool-vendored";
 export function setImageOriginalDate(imagePath: string, date: ExifDateTime) {
   const loader = new ExifTool();
   return loader
-    .write(imagePath, {
-      DateTimeOriginal: date,
-    })
+    .write(
+      imagePath,
+      {
+        DateTimeOriginal: date,
+      },
+      {
+        writeArgs: ["-overwrite_original"],
+      }
+    )
     .finally(() => loader.end());
 }
 
@@ -16,7 +22,15 @@ export function batchSetImageOriginalDate(
   const loader = new ExifTool();
   return Promise.all(
     imagePaths.map((path) =>
-      loader.write(path, { DateTimeOriginal: date }, ["-overwrite_original"])
+      loader.write(
+        path,
+        {
+          DateTimeOriginal: date,
+          ModifyDate: date,
+          CreateDate: date,
+        },
+        { writeArgs: ["-overwrite_original"] }
+      )
     )
   ).finally(() => loader.end());
 }
@@ -89,10 +103,44 @@ export function batchSmartSetImageOriginalDate(
             {
               DateTimeOriginal: newDate,
             },
-            ["-overwrite_original"]
+            {
+              writeArgs: ["-overwrite_original"],
+            }
           );
         })
       ).then(() => Promise.resolve());
     })
     .finally(() => loader.end());
+}
+
+export function batchSetImageGPS(
+  imagePaths: string[],
+  gps: {
+    latitude?: number;
+    latitudeRef?: string;
+    longitude?: number;
+    longitudeRef?: string;
+    altitude?: number;
+    altitudeRef?: string;
+    mapDatum?: string;
+  }
+) {
+  const exif = new ExifTool();
+  return Promise.all(
+    imagePaths.map((p) =>
+      exif.write(
+        p,
+        {
+          GPSLatitude: gps.latitude,
+          GPSLatitudeRef: gps.latitudeRef,
+          GPSLongitude: gps.longitude,
+          GPSLongitudeRef: gps.longitudeRef,
+          GPSAltitude: gps.altitude,
+          GPSAltitudeRef: gps.altitudeRef,
+          GPSMapDatum: gps.mapDatum,
+        },
+        { writeArgs: ["-overwrite_original"] }
+      )
+    )
+  ).finally(() => exif.end());
 }
